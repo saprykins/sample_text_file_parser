@@ -1,4 +1,14 @@
 import statistics
+import argparse
+
+
+def interface_parser():
+    parser = argparse.ArgumentParser(description = "Input action, column numbers and file name")
+    parser.add_argument('--a', '-action', default = 1, type = int, help = "choose from 1, 2 or 3 to get max, min or standard deviation values")
+    parser.add_argument('--c', '-column', default = 7, type = int, help = "choose column number")
+    parser.add_argument('--f', '-file', default = "downld-sample.txt", help = "choose file name")
+    args = parser.parse_args()
+    return args
 
 
 def get_a_column(x, file_name):
@@ -53,10 +63,18 @@ def action_on_column(a, x, file_name):
     
 
 def main_function():
-    file_name = "downld-sample.txt"
+    # args contains atributes with file name that can be called as args.f
+    # as far as actions (called by args.a) and column number (args.c)
+    
+    args = interface_parser()
+    
+    action_number = args.a
+    column_number = args.c
+    file_name = args.f
+    
     if file_test_ok(file_name):
         try:
-            action_on_column(1, 7, file_name)
+            action_on_column(action_number, column_number, file_name)
         except Exception as e:
             print(f'The following exception raised "{e}"')
     
