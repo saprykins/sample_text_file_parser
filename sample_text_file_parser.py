@@ -1,12 +1,14 @@
 import statistics
 import argparse
 
-
 def interface_parser():
     parser = argparse.ArgumentParser(description = "Input action, column numbers and file name")
-    parser.add_argument('--a', '-action', default = 1, type = int, help = "choose from 1, 2 or 3 to get max, min or standard deviation values")
-    parser.add_argument('--c', '-column', default = 7, type = int, help = "choose column number")
-    parser.add_argument('--f', '-file', default = "downld-sample.txt", help = "choose file name")
+    parser.add_argument('a', default = 1, type = int, nargs='?',
+                        help = "choose from 1, 2 or 3 to get max, min or standard deviation values")
+    parser.add_argument('c', default = 7, type = int, nargs='?',
+                        help = "choose column number")
+    parser.add_argument('f', default = "downld-sample.txt", nargs='?',
+                        help = "type file name")
     args = parser.parse_args()
     return args
 
